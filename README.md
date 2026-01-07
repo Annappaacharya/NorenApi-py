@@ -138,8 +138,8 @@ Example:
 apikey_url = api.getOAuthURL(cred['oauth_url'],cred['API_KEY'])
 ```
 
-#### <a name="md-getAccessToken"></a> getAccessToken(auth_code,cred['SECRET_KEY'],cred['API_KEY'],cred['UID'])
-Gets the SECRET_KEY, API_KEY and UID from cred.yaml file. (To be updated maually for the first time.)
+#### <a name="md-getAccessToken"></a> getAccessToken(auth_code,cred['SECRET_KEY'],cred['client_id'],cred['UID'])
+Gets the SECRET_KEY, client_id and UID from cred.yaml file. (To be updated maually for the first time.)
 The auth_code is be supplied by user after getOAuthURL login flow
 Returns the generated access token along with user id, refresh token & account id.
 Access token will be used for all subsequent API calls.
@@ -147,7 +147,7 @@ This function will automatically append to or overwrite the Access_token & Accou
 
 Example:
 ```
-acc_tok, usrid, ref_tok, actid =  api.getAccessToken(auth_code,cred['SECRET_KEY'],cred['API_KEY'],cred['UID'])
+acc_tok, usrid, ref_tok, actid =  api.getAccessToken(auth_code,cred['SECRET_KEY'],cred['client_id'],cred['UID'])
 ```
 
 #### <a name="md-injectOAuthHeader"></a> api.injectOAuthHeader(cred['Access_token'],cred['UID'],cred['Account_ID'])
