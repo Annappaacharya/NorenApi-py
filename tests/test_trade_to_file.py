@@ -82,6 +82,12 @@ ret = injected_headers = api.injectOAuthHeader(cred['Access_token'],cred['UID'],
 
 
 if ret != None:   
+    # Set credentials safely
+    api.set_credentials(
+        cred['Access_token'],
+        cred['UID'],
+        cred['Account_ID']
+    )
     ret = api.start_websocket(order_update_callback=event_handler_order_update, subscribe_callback=event_handler_quote_update, socket_open_callback=open_callback)
     
     while True:

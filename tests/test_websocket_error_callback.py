@@ -33,14 +33,20 @@ def event_error_callback(error_msg):
 api = NorenApiPy()
 
 #yaml for parameters
-with open('..\\cred.yml') as f:
+with open('../cred.yml') as f:
     cred = yaml.load(f, Loader=yaml.FullLoader)
     print(cred)
 
 #ret = api.login(userid = cred['user'], password = cred['pwd'], twoFA=cred['factor2'], vendor_code=cred['vc'], api_secret=cred['apikey'], imei=cred['imei'])
 ret = injected_headers = api.injectOAuthHeader(cred['Access_token'],cred['UID'],cred['Account_ID'])
 
-if ret != None:   
+if ret != None:
+    # Set credentials safely
+    api.set_credentials(
+        cred['Access_token'],
+        cred['UID'],
+        cred['Account_ID']
+    )   
     ret = api.start_websocket(order_update_callback=event_handler_order_update, 
                               subscribe_callback=event_handler_quote_update, 
                               socket_open_callback=event_open_callback,

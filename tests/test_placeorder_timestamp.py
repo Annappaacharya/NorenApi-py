@@ -24,7 +24,7 @@ creds['imei'] = 'imei-ka'
 token = ''
 creds['factor2'] = pyotp.TOTP(token).now()
 
-with open('cred.yml') as f:
+with open('../cred.yml') as f:
     cred = yaml.load(f, Loader=yaml.FullLoader)
     print(cred)
 
